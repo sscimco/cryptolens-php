@@ -5,7 +5,7 @@ Web API from PHP. Currently most endpoints are supported and more are following.
 
 For more information about the API and possible values and types, visit https://app.cryptolens.io/docs/api/v3, the official API documentation
 
-To use the library, you can `require_once` the `loader.php` which loads all other classes automatically or use composer where you just have to `require` the composer `autoload.php`.
+To use the library, you can `require_once` the `loader.php` which loads all other classes automatically or use composer where you just have to `require` the composer `autoload.php`. Currently, this library is not safe to use for CLI.
 Inside your script you need to `use` the classes, here is an example:
 
 Needs PHP >7.4.0, works with 8.2
@@ -35,7 +35,7 @@ ini_set("display_errors", 1);
 require_once "./loader.php";
 use Cryptolens_PHP_Client\Cryptolens;
 use Cryptolens_PHP_Client\Key;
-$c = new Cryptolens("YOUR_TOKEN", 12345, Cryptolens::CRYPTOLENS_OUTPUT_JSON);
+$c = new Cryptolens("YOUR_TOKEN", 12345, Cryptolens::CRYPTOLENS_OUTPUT_PHP);
 $k = new Key($c);
 
 # generate new key and activate Feature 3 for it
@@ -61,6 +61,7 @@ In a real values for you can be obtained as follows:
    of keys.
 * The license key would be obtained from the user in an application dependant way.
 * You can generate a machine ID for the PHP instance with the builtin `Key::getMachineId()` funtion. Please read the function's documentation for more understanding of the calculation of the machine ID.
+* In an upcoming release this library should be able to also validate license files
 
 ## Installation
 
@@ -77,7 +78,7 @@ And
 <?php
 
 require "./vendor/autoload.php";
-
+use Cryptolens_PHP_Client\Cryptolens;
 ...
 
 ?>
