@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.9
+
+* added error handler class `Errors.cryptolens.php` which will now return you the respectful errors and logs them into files.
+* added support to Analytics endpoints `registerEvent`, `getEvents`, `getObjectLog`, `getWebAPILog`
+* added examples
+
 ## v0.8
 
 * added support to Customer endpoints `addCustomer`, `editCustomer`, `removeCustomer`, `getCustomerLicenses` and `getCustomers`

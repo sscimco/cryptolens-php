@@ -1,5 +1,11 @@
 <?php
 namespace Cryptolens_PHP_Client {
+    /**
+     * Cryptolens main class
+     * 
+     * This is the cryptolens main class containing an auto loader. It is also holding the sensitive login information needed for the API.
+     * You can define the output to either JSON or Arrays (PHP)
+     */
     class Cryptolens {
 
 
@@ -22,6 +28,10 @@ namespace Cryptolens_PHP_Client {
         public const CRYPTOLENS_SUBSCRIPTION = "Subscription";
 
         public const CRYPTOLENS_CUSTOMER = "Customer";
+
+        public const CRYPTOLENS_ANALYTICS = "Analytics";
+
+        public const CRYPTOLENS_LICENSE = "License";
         
         private string $token;
 
@@ -63,6 +73,7 @@ namespace Cryptolens_PHP_Client {
 
         public static function loader(){
             require_once dirname(__FILE__) . "/classes/Helper.cryptolens.php";
+            require_once dirname(__FILE__) . "/classes/Errors.cryptolens.php";
             require_once dirname(__FILE__) . "/classes/Key.cryptolens.php";
             require_once dirname(__FILE__) . "/classes/Endpoints.cryptolens.php";
             require_once dirname(__FILE__) . "/classes/Results.endpoints.cryptolens.php";
@@ -73,6 +84,9 @@ namespace Cryptolens_PHP_Client {
             require_once dirname(__FILE__) . "/classes/Reseller.cryptolens.php";
             require_once dirname(__FILE__) . "/classes/Subscription.cryptolens.php";
             require_once dirname(__FILE__) . "/classes/Customer.cryptolens.php";
+            require_once dirname(__FILE__) . "/classes/Analytics.cryptolens.php";
+            @require_once dirname(__FILE__) . "/classes/License.cryptolens.php";
+
 
         }
 

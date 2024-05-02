@@ -86,7 +86,7 @@ namespace Cryptolens_PHP_Client {
          * @param integer $customerId The ID of the customer to retrieve the licenses from
          * @param bool $detailed If set to true, the license will be returned as a License object, default is just returning the serial key (default: false)
          * @param bool $metadata If set to false, additional information such as number of activated devices will not be returned (default: true)
-         * @return array|false Either "Result" with value 0 or false
+         * @return array|false Either an array containing the licenses or false
          */
         public function get_customer_licenses(int $customerId, bool $detailed = false, bool $metadata = true){
             $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, array("CustomerId" => $customerId, "Detailed" => $detailed, "Metdata" => $metadata));
