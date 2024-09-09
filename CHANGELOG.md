@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0
+
+* added support to Data endpoints `addDataObject`, `listDataObject`, `incrementIntValue`, `decrementIntValue`, `setStringValue`, `setIntValue`, `removeDataObject`, `uploadValues`
+* added support for License file validation `License.cryptolens.php`: `verifyLicenseKey`, `verifyLicenseFromFileContent`. See `README.md` for configuration
+
 ## v0.9
 
 * added error handler class `Errors.cryptolens.php` which will now return you the respectful errors and logs them into files.

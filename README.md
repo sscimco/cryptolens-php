@@ -63,6 +63,37 @@ In a real values for you can be obtained as follows:
 * You can generate a machine ID for the PHP instance with the builtin `Key::getMachineId()` funtion. Please read the function's documentation for more understanding of the calculation of the machine ID.
 * In an upcoming release this library should be able to also validate license files
 
+### Offline license validation
+
+The API also allows you to validate license files via the `License.cryptolens.php` file.
+To properly configure this function, please convert the XML-styled public key into PEM format (PKC#1) and save it into the `classes/*` directory as `key.pub` (if `License(<Cryptolens $cryptolens>, <string $pathToKey>)` $pathToKey is set, the path is overwritten by specified one).
+
+You can convert your key on a site like this one [here](https://the-x.cn/en-US/certificate/XmlToPem.aspx) or [using this repository](https://github.com/MisterDaneel/PemToXml)
+
+You can then validate a license key like this:
+
+```php
+<?php
+
+require_once "/path/to/autoloader.php";
+use Cryptolens_PHP_Client\Cryptolens;
+use Cryptolens_PHP_Client\License;
+
+$c = new Cryptolens("YOUR_TOKEN", 12345, Cryptolens::CRYPTOLENS_OUTPUT_PHP);
+$l = new License($c); // to specify custom key file location other than /classes/key.pub specify the FULL path as License($c, "/var/www/my/public/key.pub")
+
+$fromString = $l->validateLicense("BASE64-ENCODED-STRING", "BASE64-ENCODED-STRING") // licenseKey and signature
+$fromFileContent = $l->validateLicenseFromFileContent(file_get_contents("license.skm")); // License file as string
+$fromFile = $l->validateLicenseFromFile("license.skm")
+
+if($fromFile){
+  echo "Signature successfully validated";
+} else {
+  echo "Could not verify signature";
+}
+
+```
+
 ## Installation
 
 You can either clone this repository and require the `loader.php` (which contains a autoloader) or use composer via console:
@@ -121,6 +152,11 @@ to automatically load the required classes.
 * Payment Form
   * [x] create_session
 * Analytics
+  * [x] register_event
+  * [x] register_events
+  * [x] get_events
+  * [x] get_object_log
+  * [x] get_web_api_log
 * Message
   * [x] get_messages
   * [x] create_message

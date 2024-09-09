@@ -32,6 +32,8 @@ namespace Cryptolens_PHP_Client {
         public const CRYPTOLENS_ANALYTICS = "Analytics";
 
         public const CRYPTOLENS_LICENSE = "License";
+
+        public const CRYPTOLENS_DATA = "Data";
         
         private string $token;
 
@@ -80,6 +82,7 @@ namespace Cryptolens_PHP_Client {
             require_once dirname(__FILE__) . "/classes/Auth.cryptolens.php";
             require_once dirname(__FILE__) . "/classes/Product.cryptolens.php";
             require_once dirname(__FILE__) . "/classes/PaymentForm.cryptolens.php";
+            require_once dirname(__FILE__) . "/classes/Data.cryptolens.php";
             require_once dirname(__FILE__) . "/classes/Message.cryptolens.php";
             require_once dirname(__FILE__) . "/classes/Reseller.cryptolens.php";
             require_once dirname(__FILE__) . "/classes/Subscription.cryptolens.php";
