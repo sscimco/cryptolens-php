@@ -162,7 +162,38 @@ namespace Cryptolens_PHP_Client {
                     "Result",
                     "Message"
                 ]
-            ]
+                ],
+                "Data" => [
+                    "addDataObject" => [
+                        "Result",
+                        "Message",
+                        "Id"
+                    ],
+                    "incrementIntValue" => [
+                        "Result",
+                        "Message"
+                    ],
+                    "decramentIntValue" => [
+                        "Result",
+                        "Message"
+                    ],
+                    "setStringValue" => [
+                        "Result",
+                        "Message"
+                    ],
+                    "setIntValue" => [
+                        "Result",
+                        "Message"
+                    ],
+                    "removeDataObject" => [
+                        "Result",
+                        "Message"
+                    ],
+                    "uploadValues" => [
+                        "Result",
+                        "Message"
+                    ]
+                ]
 
         ];
 
