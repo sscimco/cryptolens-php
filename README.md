@@ -66,7 +66,7 @@ In a real values for you can be obtained as follows:
 ### Offline license validation
 
 The API also allows you to validate license files via the `License.cryptolens.php` file.
-To properly configure this function, please convert the XML-styled public key into PEM format (PKC#1) and save it into the `classes/*` directory as `key.pub` (if `License(<Cryptolens $cryptolens>, <string $pathToKey>)` $pathToKey is set, the path is overwritten by specified one).
+To properly configure this function, please convert the XML-styled public key into PEM format (PKC#1) and save it into the `classes/*` directory as `key.pub` (if `License(<Cryptolens $cryptolens>, <string $pathToKey>)` $pathToKey is set, the path is overwritten by specified one). Currently, only "other languages" formatted license files can be processed by this API client.
 
 You can convert your key on a site like this one [here](https://the-x.cn/en-US/certificate/XmlToPem.aspx) or [using this repository](https://github.com/MisterDaneel/PemToXml)
 
@@ -116,59 +116,3 @@ use Cryptolens_PHP_Client\Cryptolens;
 ```
 
 to automatically load the required classes.
-
-
-## Endpoints
-
-* Key
-  * [x] activate
-  * [x] deactivate
-  * [x] create_key
-  * [x] create_trial_key
-  * [x] create_key_from_template
-  * [x] get_key
-  * [x] add_feature
-  * [x] block_key
-  * [x] extend_license
-  * [x] remove_feature
-  * [x] unblock_key
-  * [x] machine_lock_limit
-  * [ ] change_notes\*
-  * [ ] change_reseller\*
-  * [ ] change_customer\*
-  * [ ] Offline Verification
-* Customer
-  * [x] add_customer
-  * [x] edit_customer
-  * [x] remove_customer
-  * [x] get_customer_licenses (does not support the GetCustomerLicensesBySecret Method, yet)
-  * [x] get_customers
-* Data Object
-* Product
-  * [x] get_keys
-  * [x] get_products
-* Auth
-  * [x] key_lock **(Use with caution\*\*)**  
-* Payment Form
-  * [x] create_session
-* Analytics
-  * [x] register_event
-  * [x] register_events
-  * [x] get_events
-  * [x] get_object_log
-  * [x] get_web_api_log
-* Message
-  * [x] get_messages
-  * [x] create_message
-  * [x] remove_message
-* Subscription
-  * [x] record_usage
-* Reseller
-  * [x] add_reseller
-  * [x] edit_reseller
-  * [x] remove_reseller
-  * [x] get_resellers
-  * [x] get_reseller_customers
-
-* = Considered with less priority, therefore this endpoint will not be implemented, yet.
-* ** = This method creates, retrieves or contains sensitive information (e.g. Access Tokens)

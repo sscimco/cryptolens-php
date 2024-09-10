@@ -39,6 +39,7 @@ namespace Cryptolens_PHP_Client {
             "editCustomer" => "https://api.cryptolens.io/api/customer/EditCustomer",
             "removeCustomer" => "https://api.cryptolens.io/api/customer/RemoveCustomer",
             "getCustomerLicenses" => "https://api.cryptolens.io/api/customer/GetCustomerLicenses",
+            "getCustomerLicensesBySecret" => "https://api.cryptolens.io/api/customer/GetCustomerLicensesBySecret",
             "getCustomers" => "https://api.cryptolens.io/api/customer/GetCustomers",
             # Analytics
             "registerEvent" => "https://api.cryptolens.io/api/ai/RegisterEvent",
@@ -54,7 +55,16 @@ namespace Cryptolens_PHP_Client {
             "setStringValue" => "https://api.cryptolens.io/api/data/SetStringValue",
             "setIntValue" => "https://api.cryptolens.io/api/data/SetIntValue",
             "removeDataObject" => "https://api.cryptolens.io/api/data/RemoveDataObject",
-            "uploadValues" => "https://api.cryptolens.io/api/data/UploadValuesToKey"
+            "uploadValues" => "https://api.cryptolens.io/api/data/UploadValuesToKey",
+            # User
+            "login" => "https://api.cryptolens.io/api/userauth/Login",
+            "register" => "https://api.cryptolens.io/api/userauth/Register",
+            "associate" => "https://api.cryptolens.io/api/userauth/Associate",
+            "dissociate" => "https://api.cryptolens.io/api/userauth/Dissociate",
+            "getUsers" => "https://api.cryptolens.io/api/userauth/GetUsers",
+            "changePassword" => "https://api.cryptolens.io/api/userauth/ChangePassword",
+            "resetPasswordToken" => "https://api.cryptolens.io/api/userauth/ResetPasswordToken",
+            "removeUser" => "https://api.cryptolens.io/api/userauth/RemoveUser"
         ];
 
         public static array $no_response_check = [
@@ -65,6 +75,8 @@ namespace Cryptolens_PHP_Client {
             "getResellers",
             "getResellerCustomers",
             "getCustomerLicenses",
+            "getCustomerLicensesBySecret",
+            "getUsers",
             "getCustomers",
             "getEvents",
             "getWebAPILog",

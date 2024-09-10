@@ -161,7 +161,13 @@ namespace Cryptolens_PHP_Client {
                     "Metadata",
                     "Result",
                     "Message"
-                ]
+                ],
+                "getCustomerLicensesBySecret" => [
+                    "LicenseKeys",
+                    "Metadata",
+                    "Result",
+                    "Message"
+                    ]
                 ],
                 "Data" => [
                     "addDataObject" => [
@@ -190,6 +196,37 @@ namespace Cryptolens_PHP_Client {
                         "Message"
                     ],
                     "uploadValues" => [
+                        "Result",
+                        "Message"
+                    ]
+                ],
+                "User" =>  [
+                    "login" => [
+                        "Result",
+                        "Message"
+                    ],
+                    "register" => [
+                        "Result",
+                        "Message"
+                    ],
+                    "associate" => [
+                        "Result",
+                        "Message"
+                    ],
+                    "dissociate" => [
+                        "Result",
+                        "Message"
+                    ],
+                    "getUsers" => [
+                        "Users",
+                        "Result",
+                        "Message"
+                    ],
+                    "changePassword" => [
+                        "Result",
+                        "Message"
+                    ],
+                    "removeUser" => [
                         "Result",
                         "Message"
                     ]

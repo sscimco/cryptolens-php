@@ -9,7 +9,7 @@
  */
 
 
-require "../loader.php";
+require_once "../loader.php";
 
 use Cryptolens_PHP_Client\Cryptolens;
 use Cryptolens_PHP_Client\Key;

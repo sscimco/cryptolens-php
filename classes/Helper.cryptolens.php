@@ -32,7 +32,6 @@ namespace Cryptolens_PHP_Client {
                         }
                         $parms[$key] = $value;
                     }
-                    #print_r(var_dump($parms));
                 } else {
                     echo "\$additional_flags is not parsed as an array!";
                 }
@@ -41,7 +40,7 @@ namespace Cryptolens_PHP_Client {
             foreach($parms as $i => $x){
                 if (is_array($x)) {
                     // detect array an skip
-                    continue; // Überspringe die Kodierung für diesen Durchlauf
+                    continue;
                 }
                 if($first) { $first = false; } else { $postfields .= '&';}
 

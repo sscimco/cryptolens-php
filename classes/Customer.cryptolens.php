@@ -102,6 +102,28 @@ namespace Cryptolens_PHP_Client {
             }
         }
 
+                /**
+         * `get_customer_licenses_by_secret()` - Allows you to retrieve all the customers licenses
+         *
+         * @param integer $secret The secret of the user to retrieve the licenses from
+         * @param bool $detailed If set to true, the license will be returned as a License object, default is just returning the serial key (default: false)
+         * @param bool $metadata If set to false, additional information such as number of activated devices will not be returned (default: true)
+         * @return array|false Either an array containing the licenses or false
+         */
+        public function get_customer_licenses_by_secret(int $secret, bool $detailed = false, bool $metadata = true){
+            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, array("Secret" => $secret, "Detailed" => $detailed, "Metdata" => $metadata));
+            $c = Helper::connection($parms, "getCustomerLicensesBySecret", $this->group);
+            if($c == true){
+                if(Helper::check_rm($c)){
+                    return Cryptolens::outputHelper($c);
+                } else {
+                    return Cryptolens::outputHelper($c, 1);
+                }
+            } else {
+                return false;
+            }
+        }
+
         /**
          * `get_customers()` - Allows you to retrieve all customers 
          *
