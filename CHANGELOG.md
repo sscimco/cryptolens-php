@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.1
+
+* added support to User authentication endpoints `login`, `register`, `associate`, `dissociate`, `getUsers`, `changePassword`, `resetPasswordToken`, `removeUser` <!-- I simply forgot this endpoint group exists aswell or it has been added newly. -->
+* added support to Customer endpoint `get_customer_licenses_by_secret`
+
+<!--  additionally removed some unused code and fixed 2 things-->
+
 ## v1.0
 
 * added support to Data endpoints `addDataObject`, `listDataObject`, `incrementIntValue`, `decrementIntValue`, `setStringValue`, `setIntValue`, `removeDataObject`, `uploadValues`

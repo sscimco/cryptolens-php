@@ -7,7 +7,7 @@
  * You atleast require to use the base cryptolens, customer and key class.
  */
 
-require "../loader.php";
+require_once "../loader.php";
 
 use Cryptolens_PHP_Client\Cryptolens;
 use Cryptolens_PHP_Client\Customer;
