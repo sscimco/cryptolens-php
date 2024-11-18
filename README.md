@@ -1,9 +1,9 @@
 # Cryptolens PHP
 
-This repository contains functions for interacting with the Cryptolens
-Web API from PHP. Currently most endpoints are supported and more are following.
+This repository contains functions for interacting with the Cryptolens Web API from PHP.
+All endpoints are supported. This API client uses Cryptolens Web API 3.
 
-For more information about the API and possible values and types, visit https://app.cryptolens.io/docs/api/v3, the official API documentation
+For more information about the API and possible values and types, visit https://app.cryptolens.io/docs/api/v3, the official API documentation.
 
 To use the library, you can `require_once` the `loader.php` which loads all other classes automatically or use composer where you just have to `require` the composer `autoload.php`. Currently, this library is not safe to use for CLI.
 Inside your script you need to `use` the classes, here is an example:
@@ -24,6 +24,11 @@ $k = new Key($c);
 $key = "XXXXX-XXXXX-XXXXX-XXXXX";
 $machine_id = $k->getMachineId();
 print_r("Key 'activate':" . var_dump($k->activate($key, $machine_id)));
+
+// OR
+
+$c->key()->activate($key, $c->key()->getMachineId());
+
 ?>
 ```
 

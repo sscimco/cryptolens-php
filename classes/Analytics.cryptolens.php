@@ -1,7 +1,16 @@
 <?php
-
 namespace Cryptolens_PHP_Client {
-    class Analytics extends Cryptolens {
+    /**
+     * Analytics
+     * 
+     * Allows the use of all Analytics endpoints
+     * 
+     * @author Bryan Böhnke-Avan <bryan@openducks.org>
+     * @license MIT
+     * @since v0.9
+     * @link https://app.cryptolens.io/docs/api/v3/AI
+     */
+    class Analytics {
         private Cryptolens $cryptolens;
 
         private string $group;
@@ -38,7 +47,7 @@ namespace Cryptolens_PHP_Client {
                 "Currency" => $currency,
                 "Metadata" => $metadata
             );
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), $key, $machineid, $additional_flags);
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), $key, $machineid, $additional_flags);
             $c = Helper::connection($parms, "registerEvent", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -71,7 +80,7 @@ namespace Cryptolens_PHP_Client {
                 "MachineCode" => $machineid,
                 "Events" => $events
             );
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), $key, $machineid, $additional_flags);
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), $key, $machineid, $additional_flags);
             $c = Helper::connection($parms, "registerEvents", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -102,7 +111,7 @@ namespace Cryptolens_PHP_Client {
             if(isset($key) && !isset($product_id)){
                 return false;
             }
-            $parms = Helper::build_params($this->cryptolens->get_token(), $product_id ?? $this->cryptolens->get_product_id(), $key, null, array("Limit" => $limit, "StartingAfter" => $startingafter, "EndingBefore" => $endingbefore, "Time" => $time, "Metadata" => $metadata));
+            $parms = Helper::build_params($this->cryptolens->getToken(), $product_id ?? $this->cryptolens->getProductId(), $key, null, array("Limit" => $limit, "StartingAfter" => $startingafter, "EndingBefore" => $endingbefore, "Time" => $time, "Metadata" => $metadata));
             $c = Helper::connection($parms, "getEvents", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -128,7 +137,7 @@ namespace Cryptolens_PHP_Client {
             if($limit > 100){
                 return false;
             }
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, array("Limit" => $limit, "StartingAfter" => $startingafter));
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, array("Limit" => $limit, "StartingAfter" => $startingafter));
             $c = Helper::connection($parms, "getObjectLog", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -163,7 +172,7 @@ namespace Cryptolens_PHP_Client {
                 return false;
             }
 
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, array("ProductId" => $product_id, "Key" => $key, "Limit" => $limit, "StartingAfter" => $startingafter, "EndingBefore" => $endingbefore, "AnomalyClassification" => $anomalyClassification));
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, array("ProductId" => $product_id, "Key" => $key, "Limit" => $limit, "StartingAfter" => $startingafter, "EndingBefore" => $endingbefore, "AnomalyClassification" => $anomalyClassification));
             $c = Helper::connection($parms, "getWebAPILog", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -177,6 +186,3 @@ namespace Cryptolens_PHP_Client {
         }
     }
 }
-
-
-?>

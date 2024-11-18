@@ -1,6 +1,20 @@
 <?php
 namespace Cryptolens_PHP_Client {
+    /**
+     * Endpoints
+     * 
+     * Internal class to return the corresponding API URL for given endpoint
+     * 
+     * @author Bryan Böhnke-Avan <bryan@openducks.org>
+     * @license MIT
+     * @since v0.1
+     */
     class Endpoints {
+
+        /**
+         * `$endpoints` Variable containing all supported endpoints
+         * @var array
+         */
         public static array $endpoints = [
             # Keys
             "activate" => "https://api.cryptolens.io/api/key/activate",
@@ -67,6 +81,11 @@ namespace Cryptolens_PHP_Client {
             "removeUser" => "https://api.cryptolens.io/api/userauth/RemoveUser"
         ];
 
+        /**
+         * `$no_response_check` Variable containing endpoint names which should be excluded from being checked by `Helper::check_response`,
+         * as these endpoints return lists or generally differ from the values at `Results::$results`
+         * @var array
+         */
         public static array $no_response_check = [
             "createKey",
             "getKeys",
@@ -84,6 +103,11 @@ namespace Cryptolens_PHP_Client {
             "listDataObjects"
         ];
 
+        /**
+         * `getEndpoint()` Returns the API URL for given endpoint name
+         * @param mixed $function_name Name of the endpoint
+         * @return null|string Either the API URL or null if not found
+         */
         public static function get_endpoint($function_name){
             if(array_search($function_name, array_flip(self::$endpoints))){
                 return self::$endpoints[$function_name];
@@ -91,6 +115,3 @@ namespace Cryptolens_PHP_Client {
         }
     }
 }
-
-
-?>

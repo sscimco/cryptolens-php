@@ -2,6 +2,16 @@
 namespace Cryptolens_PHP_Client {
     use OpenSSLAsymmetricKey;
 
+    /**
+     * License
+     * 
+     * Allows to validate license files offline
+     * 
+     * @author Bryan Böhnke-Avan
+     * @license MIT
+     * @since v1.0
+     * @requires \OpenSSLAsymetricKey
+     */
     class License
     {
 
@@ -111,6 +121,3 @@ namespace Cryptolens_PHP_Client {
         }
     }
 }
-
-
-

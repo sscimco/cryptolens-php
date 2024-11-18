@@ -1,5 +1,15 @@
 <?php
 namespace Cryptolens_PHP_Client {
+    /**
+     * PaymentForm
+     * 
+     * Allows you to use the `create_session` PaymentForm API endpoint
+     * 
+     * @author Bryan Böhnke-Avan <bryan@openducks.org>
+     * @license MIT
+     * @since v0.4.3
+     * @link https://app.cryptolens.io/docs/api/v3/PaymentForm
+     */
     class PaymentForm {
 
         private Cryptolens $cryptolens;
@@ -29,7 +39,7 @@ namespace Cryptolens_PHP_Client {
 
         public function create_session(int $form_id, int $expires = 60, float $price = 0, string $currency = "USD", array $additional_flags = null){
             if($additional_flags == null){$additional_flags = array();};
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, array_merge(array("PaymentFormId" => $form_id, "Expires" => $expires, "Prices" => $price, "Currency" => $currency), $additional_flags));
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, array_merge(array("PaymentFormId" => $form_id, "Expires" => $expires, "Prices" => $price, "Currency" => $currency), $additional_flags));
             $c = Helper::connection($parms, "createSession", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -43,6 +53,3 @@ namespace Cryptolens_PHP_Client {
         }
     }
 }
-
-
-?>

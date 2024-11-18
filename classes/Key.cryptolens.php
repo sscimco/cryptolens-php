@@ -1,5 +1,15 @@
 <?php
 namespace Cryptolens_PHP_Client {
+    /**
+     * Key
+     * 
+     * Allows the use of all Key API endpoints
+     * 
+     * @author Bryan Böhnke-Avan <bryan@openducks.org>
+     * @license MIT
+     * @since v0.1
+     * @link https://app.cryptolens.io/docs/api/v3/Key
+     */
     class Key {
         private Cryptolens $cryptolens;
 
@@ -44,7 +54,7 @@ namespace Cryptolens_PHP_Client {
          * @link https://app.cryptolens.io/docs/api/v3/activate
          */
         public function activate(string $key, string $machineid){
-            $parms = $this->build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), $key, $machineid);
+            $parms = $this->build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), $key, $machineid);
             $c = $this->connection($parms, "activate");
             if($c == true){
                 $license = json_decode(base64_decode($c["licenseKey"]), true);
@@ -57,7 +67,7 @@ namespace Cryptolens_PHP_Client {
                     return false; # Key, productid, expires or activatedMachines are not set
                 }
 
-                if($license["ProductId"] !== $this->cryptolens->get_product_id() || $license["Key"] !== $key){
+                if($license["ProductId"] !== $this->cryptolens->getProductId() || $license["Key"] !== $key){
                     return Cryptolens::outputHelper([
                         "error" => "An error occured while activating key - Malformed response recieved.",
                         "response" => $c
@@ -103,7 +113,7 @@ namespace Cryptolens_PHP_Client {
          * @link https://api.cryptolens.io/api/key/deactivate
          */
         public function deactivate(string $key, string $machineid = null){
-            $parms = $this->build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), $key, $machineid);
+            $parms = $this->build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), $key, $machineid);
             $c = $this->connection($parms, "deactivate");
 
             if($c == true){
@@ -124,7 +134,7 @@ namespace Cryptolens_PHP_Client {
          * @link https://api.cryptolens.io/api/key/createKey
          */
         public function create_key(array $additional_flags = null){
-            $parms = $this->build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, $additional_flags);
+            $parms = $this->build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, $additional_flags);
             $c = $this->connection($parms, "createKey");
             if($c == true){
                 switch($c){
@@ -151,7 +161,7 @@ namespace Cryptolens_PHP_Client {
          * @param string [optional] Lock the new generated key to a machineId
          */
         public function create_trial_key(string $machineId = null){
-            $parms = $this->build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, $machineId);
+            $parms = $this->build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, $machineId);
             $c = $this->connection($parms, "createTrialKey");
             if($c == true){
                 switch($c){
@@ -179,7 +189,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|bool Returns an array with the response or bool on failure
          */
         public function create_key_from_template(int $template){
-            $parms = $this->build_params($this->cryptolens->get_token(), null, null, null, ["LicenseTemplateId" => $template]);
+            $parms = $this->build_params($this->cryptolens->getToken(), null, null, null, ["LicenseTemplateId" => $template]);
             $c = $this->connection($parms, "createKeyFromTemplate");
             if($c == true){
                 if($c["result"] != 0){
@@ -203,7 +213,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|bool Returns the key "response" and "licenseKey" (base64 decoded JSON array)
          */
         public function get_key(string $key, array $additional_flags = null){
-            $parms = $this->build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), $key, null, $additional_flags);
+            $parms = $this->build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), $key, null, $additional_flags);
             $c = $this->connection($parms, "getKey");
             if($c == true){
                 switch($c){
@@ -238,7 +248,7 @@ namespace Cryptolens_PHP_Client {
          * @note When using SKGL a new key will be generated and included inside the "message" key, otherwise it will be empty
          */
         public function add_feature(string $key, int $feature){
-            $parms = $this->build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), $key, null, ["Feature" => $feature]);
+            $parms = $this->build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), $key, null, ["Feature" => $feature]);
             $c = $this->connection($parms, "addFeature");
             if($c == true){
                 if($c["result"] == 0){
@@ -255,7 +265,7 @@ namespace Cryptolens_PHP_Client {
         }
 
         public function block_key(string $key){
-            $parms = $this->build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), $key);
+            $parms = $this->build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), $key);
             $c = $this->connection($parms, "blockKey");
             if($c == true){
                 if($c["result"] == 0){
@@ -281,7 +291,7 @@ namespace Cryptolens_PHP_Client {
          * If the SKGL algorithm is used, the "message" key contains the new key, otherwise you can use the same key.
          */
         public function extend_license(string $key, int $days){
-            $parms = $this->build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), $key, null, ["NoOfDays" => $days]);
+            $parms = $this->build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), $key, null, ["NoOfDays" => $days]);
             $c = $this->connection($parms, "extendLicense");
             if($c == true){
                 if($c["result"] == 0){
@@ -298,7 +308,7 @@ namespace Cryptolens_PHP_Client {
         }
         # returns new key if skgl
         public function remove_feature(string $key, int $feature){
-            $parms = $this->build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), $key, null, ["Feature" => $feature]);
+            $parms = $this->build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), $key, null, ["Feature" => $feature]);
             $c = $this->connection($parms, "removeFeature");
             if($c == true || $this->check_rm($c)){
                 return Cryptolens::outputHelper($c);
@@ -311,7 +321,7 @@ namespace Cryptolens_PHP_Client {
         }
 
         public function unblock_key(string $key){
-            $parms = $this->build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), $key);
+            $parms = $this->build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), $key);
             $c = $this->connection($parms, "unblockKey");
             if($c == true || $this->check_rm($c)){
                 return true;
@@ -324,7 +334,7 @@ namespace Cryptolens_PHP_Client {
         }
 
         public function machine_lock_limit(string $key, int $machines){
-            $parms = $this->build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), $key, null, ["NumberOfMachines" => $machines]);
+            $parms = $this->build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), $key, null, ["NumberOfMachines" => $machines]);
             $c = $this->connection($parms, "machineLockLimit");
             if($c == true || $this->check_rm($c)){
                 return Cryptolens::outputHelper($c);
@@ -349,7 +359,7 @@ namespace Cryptolens_PHP_Client {
             );
             if($key != null){
                 $parms["Key"] = $key;
-            };
+            }
             if($machineid != null){
                 $parms["MachineCode"] = "";# empty string to prevent error
             }
@@ -369,7 +379,6 @@ namespace Cryptolens_PHP_Client {
                         }
                         $parms[$key] = $value;
                     }
-                    #print_r(var_dump($parms));
                 } else {
                     echo "Parsed \$additional_flags not as an array!";
                 }
@@ -378,7 +387,7 @@ namespace Cryptolens_PHP_Client {
             foreach($parms as $i => $x){
                 if (is_array($x)) {
                     // detect array an skip
-                    continue; // Überspringe die Kodierung für diesen Durchlauf
+                    continue;
                 }
                 if($first) { $first = false; } else { $postfields .= '&';}
 
@@ -438,5 +447,3 @@ namespace Cryptolens_PHP_Client {
         }
     }
 }
-
-?>

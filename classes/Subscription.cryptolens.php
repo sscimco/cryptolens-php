@@ -1,5 +1,15 @@
 <?php
 namespace Cryptolens_PHP_Client {
+    /**
+     * Subscription
+     * 
+     * Allows you to record usage for Stripe's metered billing
+     * 
+     * @author Bryan Böhnke-Avan <bryan@openducks.org>
+     * @license MIT
+     * @since v0.7
+     * @link https://app.cryptolens.io/docs/api/v3/Reseller
+     */
     class Subscription {
 
         private Cryptolens $cryptolens;
@@ -25,7 +35,7 @@ namespace Cryptolens_PHP_Client {
          * @link https://api.cryptolens.io/api/subscription/RecordUsage
          */
         public function record_usage(string $key, int $amount = 0){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, array("Key" => $key, "Amount" => $amount));
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, array("Key" => $key, "Amount" => $amount));
             $c = Helper::connection($parms, "recordUsage", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -39,6 +49,3 @@ namespace Cryptolens_PHP_Client {
         }
     }
 }
-
-
-?>
