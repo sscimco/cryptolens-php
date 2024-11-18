@@ -1,5 +1,15 @@
 <?php
 namespace Cryptolens_PHP_Client {
+    /**
+     * Customer
+     * 
+     * Allows the use of all Customer endpoints
+     * 
+     * @author Bryan Böhnke-Avan <bryan@openducks.org>
+     * @license MIT
+     * @since v0.8
+     * @link https://app.cryptolens.io/docs/api/v3/Customer
+     */
     class Customer {
 
         private Cryptolens $cryptolens;
@@ -26,7 +36,7 @@ namespace Cryptolens_PHP_Client {
            if(!isset($additional_flags)){
                 $additional_flags=array();
             };
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, array_merge(array("Name" => $name, "Email" => $email, "CompanyName" => $company_name), $additional_flags));
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, array_merge(array("Name" => $name, "Email" => $email, "CompanyName" => $company_name), $additional_flags));
             $c = Helper::connection($parms, "addCustomer", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -47,7 +57,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|false Returns either "Result" key with value 0 for success or "Error" key on an error
          */
         public function edit_customer(int $customerId, array $additional_flags){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, array_merge(array("CustomerId" => $customerId), $additional_flags));
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, array_merge(array("CustomerId" => $customerId), $additional_flags));
             $c = Helper::connection($parms, "editCustomer", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -67,7 +77,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|false Either "Result" with value 0 or false
          */
         public function remove_customer(int $customerId){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, array("CustomerId" => $customerId));
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, array("CustomerId" => $customerId));
             $c = Helper::connection($parms, "removeCustomer", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -89,7 +99,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|false Either an array containing the licenses or false
          */
         public function get_customer_licenses(int $customerId, bool $detailed = false, bool $metadata = true){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, array("CustomerId" => $customerId, "Detailed" => $detailed, "Metdata" => $metadata));
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, array("CustomerId" => $customerId, "Detailed" => $detailed, "Metdata" => $metadata));
             $c = Helper::connection($parms, "getCustomerLicenses", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -102,7 +112,7 @@ namespace Cryptolens_PHP_Client {
             }
         }
 
-                /**
+        /**
          * `get_customer_licenses_by_secret()` - Allows you to retrieve all the customers licenses
          *
          * @param integer $secret The secret of the user to retrieve the licenses from
@@ -111,7 +121,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|false Either an array containing the licenses or false
          */
         public function get_customer_licenses_by_secret(int $secret, bool $detailed = false, bool $metadata = true){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, array("Secret" => $secret, "Detailed" => $detailed, "Metdata" => $metadata));
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, array("Secret" => $secret, "Detailed" => $detailed, "Metdata" => $metadata));
             $c = Helper::connection($parms, "getCustomerLicensesBySecret", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -141,7 +151,7 @@ namespace Cryptolens_PHP_Client {
                 $additional_flags["Limit"] = $limit;
             }
             $additional_flags["ModelVersion"] = $modelversion;
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, $additional_flags);
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, $additional_flags);
             $c = Helper::connection($parms, "getCustomers", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -155,6 +165,3 @@ namespace Cryptolens_PHP_Client {
         }
     }
 }
-
-
-?>

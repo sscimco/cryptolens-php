@@ -1,5 +1,15 @@
 <?php
 namespace Cryptolens_PHP_Client {
+    /**
+     * Reseller
+     * 
+     * Allows the use of all Reseller API endpoints
+     * 
+     * @author Bryan Böhnke-Avan <bryan@openducks.org>
+     * @license MIT
+     * @since v0.6
+     * @link https://app.cryptolens.io/docs/api/v3/Reseller
+     */
     class Reseller {
 
         private Cryptolens $cryptolens;
@@ -29,7 +39,7 @@ namespace Cryptolens_PHP_Client {
 
         public function add_reseller(string $name, string $email, array $additional_flags = null){
             if($additional_flags == null){$additional_flags = array();};
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, array_merge(array("Name" => $name, "Email" => $email), $additional_flags));
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, array_merge(array("Name" => $name, "Email" => $email), $additional_flags));
             $c = Helper::connection($parms, "addReseller", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -53,7 +63,7 @@ namespace Cryptolens_PHP_Client {
          * @link https://api.cryptolens.io/api/reseller/EditReseller
          */
         public function edit_reseller(int $resellerId, array $additional_flags){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, array_merge(array("ResellerId" => $resellerId), $additional_flags));
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, array_merge(array("ResellerId" => $resellerId), $additional_flags));
             $c = Helper::connection($parms, "editReseller", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -74,7 +84,7 @@ namespace Cryptolens_PHP_Client {
          * @link https://api.cryptolens.io/api/reseller/RemoveReseller
          */
         public function remove_reseller(int $resellerId){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, array("ResellerId" => $resellerId));
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, array("ResellerId" => $resellerId));
             $c = Helper::connection($parms, "removeReseller", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -104,7 +114,7 @@ namespace Cryptolens_PHP_Client {
                 $additional_flags["Limit"] = $limit;
             }
 
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, $additional_flags);
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, $additional_flags);
             $c = Helper::connection($parms, "getResellers", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -125,7 +135,7 @@ namespace Cryptolens_PHP_Client {
          * @link https://api.cryptolens.io/api/reseller/GetResellers
          */
         public function get_reseller_by_id(int $resellerId){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, array("ResellerId" => $resellerId));
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, array("ResellerId" => $resellerId));
             $c = Helper::connection($parms, "getResellers", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -146,7 +156,7 @@ namespace Cryptolens_PHP_Client {
          * @link https://api.cryptolens.io/api/reseller/GetResellerCustomers
          */
         public function get_reseller_customers(int $resellerId){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, array("ResellerId" => $resellerId));
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, array("ResellerId" => $resellerId));
             $c = Helper::connection($parms, "getResellerCustomers", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -160,6 +170,3 @@ namespace Cryptolens_PHP_Client {
         }
     }
 }
-
-
-?>

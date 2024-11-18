@@ -1,6 +1,15 @@
 <?php
-
 namespace Cryptolens_PHP_Client {
+    /**
+     * User
+     * 
+     * Allows the use of all User Authentication methods
+     * 
+     * @author Bryan Böhnke-Avan <bryan@openducks.org>
+     * @license MIT
+     * @since v1.1
+     * @link https://app.cryptolens.io/docs/api/v3/UserAuth
+     */
     class User {
 
         public Cryptolens $cryptolens;
@@ -20,7 +29,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|bool|string
          */
         public function login(string $username, string $password){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, [
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, [
                 "Username" => $username,
                 "Password" => $password
             ]);
@@ -47,7 +56,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|bool|string
          */
         public function register(string $username, string $password, string $customerId = null, string $email = null){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, [
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, [
                 "Username" => $username,
                 "Password" => $password,
                 "CustomerId" => $customerId,
@@ -74,7 +83,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|bool
          */
         public function associate(string $username, string $customerId = null){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, [
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, [
                 "Username" => $username,
                 "CustomerId" => $customerId,
             ]);
@@ -98,7 +107,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|bool
          */
         public function dissociate(string $username){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, [
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, [
                 "Username" => $username
             ]);
 
@@ -121,7 +130,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|bool
          */
         public function getUsers(string $customerId = null){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, [
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, [
                 "customerId" => $customerId,
             ]);
 
@@ -148,7 +157,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|bool
          */
         public function changePassword(string $username, string $newPassword, string $oldPassword = null, string $passwordResetToken = null, bool $adminMode = false){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, [
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, [
                 "Username" => $username,
                 "OldPassword" => $oldPassword,
                 "NewPassword" => $newPassword,
@@ -175,7 +184,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|bool
          */
         public function resetPasswordToken(string $username){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, [
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, [
                 "Username" => $username,
             ]);
 
@@ -198,7 +207,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|bool
          */
         public function removeUser(string $username){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, [
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, [
                 "Username" => $username,
             ]);
 

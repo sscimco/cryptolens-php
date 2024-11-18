@@ -1,5 +1,15 @@
 <?php
 namespace Cryptolens_PHP_Client {
+    /**
+     * Product
+     * 
+     * Allows the use of all Product API endpoints
+     * 
+     * @author Bryan Böhnke-Avan <bryan@openducks.org>
+     * @license MIT
+     * @since v0.4
+     * @link https://app.cryptolens.io/docs/api/v3/Product
+     */
     class Product {
 
         private Cryptolens $cryptolens;
@@ -67,7 +77,7 @@ namespace Cryptolens_PHP_Client {
                     $additional_flags = array_merge(["page" => $page], $additional_flags);
                 };
             }
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, $additional_flags);
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, $additional_flags);
             $c = Helper::connection($parms, "getKeys", $this->group);
 
             if($c == true){
@@ -80,7 +90,7 @@ namespace Cryptolens_PHP_Client {
         }
 
         public function get_products(){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id());
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId());
             $c = Helper::connection($parms, "getProducts", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -92,6 +102,3 @@ namespace Cryptolens_PHP_Client {
         }
     }
 }
-
-
-?>

@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.2
+
+* All API classes can now directly be used from the Cryptolens base class
+
+* Analytics class no longer extends Cryptolens base class
+* removed php closing tag within classes and excess empty lines
+* added documentation for internal functions
+* quality improvements
+* added php class headers
+
 ## v1.1
 
 * added support to User authentication endpoints `login`, `register`, `associate`, `dissociate`, `getUsers`, `changePassword`, `resetPasswordToken`, `removeUser` <!-- I simply forgot this endpoint group exists aswell or it has been added newly. -->

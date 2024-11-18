@@ -1,6 +1,19 @@
 <?php
 namespace Cryptolens_PHP_Client {
+    /**
+     * Results
+     * 
+     * Internal class to return the allowed keys for an endpoint
+     * 
+     * @author Bryan Böhnke-Avan <bryan@openducks.org>
+     * @license MIT
+     * @since v0.1
+     */
     class Results extends Endpoints {
+        /**
+         * `$results` An array containing each returned key for given endpoint group and name
+         * @var array
+         */
         public static array $results = [
             "Key" => [
                 "activate" => [
@@ -234,12 +247,12 @@ namespace Cryptolens_PHP_Client {
 
         ];
 
+        /**
+         * `get_results` Returns the `Results::$results` array
+         * @return array
+         */
         public static function get_results(){
             return self::$results;
         }
     }
 }
-
-
-
-?>

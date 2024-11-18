@@ -1,5 +1,15 @@
 <?php
 namespace Cryptolens_PHP_Client {
+    /**
+     * Data
+     * 
+     * Allows the use of all Data endpoints
+     * 
+     * @author Bryan Böhnke-Avan <bryan@openducks.org
+     * @license MIT
+     * @since v1.0
+     * @link https://app.cryptolens.io/docs/api/v3/Data
+     */
     class Data {
         
         private Cryptolens $cryptolens;
@@ -25,7 +35,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|bool
          */
         public function addDataObject(string $name, string $value, int $int = 0, int $referencerType = 0, string $referencerId = "0", bool $checkForDuplicates = false){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, [
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, [
                 "Name" => $name,
                 "StringValue" => $value,
                 "IntValue" => $int,
@@ -56,7 +66,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|bool Array on success and false on failure
          */
         public function listDataObjects(int $referencerType = 0, string $referencerId = "0", string $contains = "", bool $showAll = true){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, [
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, [
                 "ReferencerType" => $referencerType,
                 "ReferencerId" => $referencerId,
                 "Contains" => $contains,
@@ -84,7 +94,7 @@ namespace Cryptolens_PHP_Client {
         * @return array|bool Array on success and false on failure
         */
        public function incrementIntValue(int $id, int $value = 0, bool $enableBound = false, int $bound = 0){
-           $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, [
+           $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, [
                "Id" => $id,
                "IntValue" => $value,
                "EnableBound" => $enableBound,
@@ -112,7 +122,7 @@ namespace Cryptolens_PHP_Client {
         * @return array|bool Array on success and false on failure
         */
         public function decrementIntValue(int $id, int $value = 0, bool $enableBound = false, int $bound = 0){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, [
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, [
                 "Id" => $id,
                 "IntValue" => $value,
                 "EnableBound" => $enableBound,
@@ -138,7 +148,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|bool
          */
         public function setStringValue(int $id, string $value = null){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, [
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, [
                 "Id" => $id,
                 "StringValue" => $value
             ]);
@@ -162,7 +172,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|bool
          */
         public function setIntValue(int $id, int $value = null){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, [
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, [
                 "Id" => $id,
                 "IntValue" => $value
             ]);
@@ -185,7 +195,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|bool
          */
         public function removeDataObject(int $id){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, [
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, [
                 "Id" => $id
             ]);
             $c = Helper::connection($parms, "removeDataObject", $this->group);
@@ -200,7 +210,7 @@ namespace Cryptolens_PHP_Client {
             }
         }
 
-                /**
+        /**
          * `uploadValues()` - Upload values from a Cryptolens log file to either increment or decrement a data object
          * @param int $id Unique ID of the data object
          * @param string $key Serial Key
@@ -209,7 +219,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|bool
          */
         public function uploadValues(int $id, string $key, string $data){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), $key, null, [
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), $key, null, [
                 "Id" => $id,
                 "Data" => $data
             ]);
@@ -226,6 +236,3 @@ namespace Cryptolens_PHP_Client {
         }
     }
 }
-
-
-?>

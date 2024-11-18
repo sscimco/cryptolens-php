@@ -3,6 +3,9 @@ namespace Cryptolens_PHP_Client {
     /**
      * Messages - Allows you to broadcast messages.
      * You can create messages via GUI here: https://app.cryptolens.io/Message
+     * @author Bryan Böhnke-Avan <bryan@openducks.org
+     * @license MIT
+     * @since v0.5
      * @link https://help.cryptolens.io/messaging/index
      * @link https://app.cryptolens.io/docs/api/v3/Message
      */
@@ -44,7 +47,7 @@ namespace Cryptolens_PHP_Client {
                 $additional_flags["Channel"] = $this->channel;
             }
             if($additional_flags == null){$additional_flags = array();};
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, array_merge(array("Content" => $content), $additional_flags));
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, array_merge(array("Content" => $content), $additional_flags));
             $c = Helper::connection($parms, "createMessage", "Message");
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -64,7 +67,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|false Returns either an array, containing the "Result" key which either is 0 for success or 1 if an error occured. Returning false on connection error. 
          */
         public function remove_message(int $message_id){
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, array("Id" => $message_id));
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, array("Id" => $message_id));
             $c = Helper::connection($parms, "removeMessage", "Message");
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -94,7 +97,7 @@ namespace Cryptolens_PHP_Client {
             if(isset($greater_than)){
                 $additional_flags["Time"] = $greater_than;
             }
-            $parms = Helper::build_params($this->cryptolens->get_token(), $this->cryptolens->get_product_id(), null, null, $additional_flags);
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, $additional_flags);
             $c = Helper::connection($parms, "getMessages", "Message");
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -108,6 +111,3 @@ namespace Cryptolens_PHP_Client {
         }
     }
 }
-
-
-?>

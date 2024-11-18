@@ -75,3 +75,5 @@ if(isset($_GET["exampleCustomer"])){
     $data = http_build_query($data);
     header("Location: ?{$data}");
 }
+
+?>

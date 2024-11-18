@@ -1,6 +1,18 @@
 <?php
 
-function cryptolens_activate($token, $product_id, $key, $machine_code)
+/**
+ * `cryptolens_activate` - Standalone function to activate a key
+ * @param mixed $token The token to authenticate against the API
+ * @param mixed $product_id Your product ID
+ * @param mixed $key The key to activate
+ * @param mixed $machine_code optional machine code to bind the key to
+ * @return bool Either true on success or false on failure
+ * 
+ * @author Cryptolens AB
+ * @link https://github.com/cryptolens/cryptolens-php
+ * @deprecated You should use the library. This functions exits only for backwards compatibility.
+ */
+function cryptolens_activate(string $token, string $product_id, string $key, ?string $machine_code)
 {
   $params = 
     array(

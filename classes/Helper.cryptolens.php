@@ -1,5 +1,14 @@
 <?php
 namespace Cryptolens_PHP_Client {
+    /**
+     * Helper
+     * 
+     * Internal helper class
+     * 
+     * @author Bryan Böhnke-Avan <bryan@openducks.org
+     * @license MIT
+     * @since v0.4
+     */
     class Helper extends Cryptolens {
 
         public static function build_params($token, $product_id, $key = null, $machineid = null, array $additional_flags = null){
@@ -101,7 +110,3 @@ namespace Cryptolens_PHP_Client {
         }
     }
 }
-
-
-
-?>

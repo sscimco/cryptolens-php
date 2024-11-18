@@ -50,3 +50,5 @@ if($_GET["action"] == "exampleCheckPro"){
         echo "Failed to check for enabled Feature 1 on key " . "EXAMPLE_KEY";
     }
 }
+
+?>
