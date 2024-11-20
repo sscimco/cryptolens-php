@@ -8,10 +8,6 @@
         {
             "name": "Bryan Böhnke-Avan",
             "email": "bryan@openducks.org"
-        },
-        {
-            "name": "Cryptolens AB",
-            "homepage": "https://cryptolens.io"
         }
     ],
     "minimum-stability": "stable",
