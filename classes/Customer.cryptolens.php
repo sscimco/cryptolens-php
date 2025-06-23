@@ -99,7 +99,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|false Either an array containing the licenses or false
          */
         public function get_customer_licenses(int $customerId, bool $detailed = false, bool $metadata = true){
-            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, array("CustomerId" => $customerId, "Detailed" => $detailed, "Metdata" => $metadata));
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, array("CustomerId" => $customerId, "Detailed" => $detailed, "Metadata" => $metadata));
             $c = Helper::connection($parms, "getCustomerLicenses", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
@@ -121,7 +121,7 @@ namespace Cryptolens_PHP_Client {
          * @return array|false Either an array containing the licenses or false
          */
         public function get_customer_licenses_by_secret(int $secret, bool $detailed = false, bool $metadata = true){
-            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, array("Secret" => $secret, "Detailed" => $detailed, "Metdata" => $metadata));
+            $parms = Helper::build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), null, null, array("Secret" => $secret, "Detailed" => $detailed, "Metadata" => $metadata));
             $c = Helper::connection($parms, "getCustomerLicensesBySecret", $this->group);
             if($c == true){
                 if(Helper::check_rm($c)){
