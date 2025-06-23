@@ -146,7 +146,7 @@ namespace Cryptolens_PHP_Client {
                     case $c["key"] == null && $c["keys"] == null:
                         return Cryptolens::outputHelper([
                             "error" => "Key is empty.",
-                            "reponse" => $c
+                            "response" => $c
                         ]);
                 };
                 return Cryptolens::outputHelper($c);
@@ -225,7 +225,7 @@ namespace Cryptolens_PHP_Client {
                     case $c["licenseKey"] == null:
                         return Cryptolens::outputHelper([
                             "error" => "License Key object empty!",
-                            "reponse" => $c
+                            "response" => $c
                         ]);
                 }
 
