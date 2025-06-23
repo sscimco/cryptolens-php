@@ -250,17 +250,13 @@ namespace Cryptolens_PHP_Client {
         public function add_feature(string $key, int $feature){
             $parms = $this->build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), $key, null, ["Feature" => $feature]);
             $c = $this->connection($parms, "addFeature");
-            if($c == true){
-                if($c["result"] == 0){
-                    return true;
-                } else {
-                    return Cryptolens::outputHelper([
-                        "error" => "An error occured!",
-                        "response" => $c
-                    ]);
-                }
+            if($c == true || $this->check_rm($c)){
+                return Cryptolens::outputHelper($c);
             } else {
-                return false;
+                return Cryptolens::outputHelper([
+                    "error" => "An error occurred",
+                    "response" => $c
+                ]);
             }
         }
 
@@ -324,10 +320,10 @@ namespace Cryptolens_PHP_Client {
             $parms = $this->build_params($this->cryptolens->getToken(), $this->cryptolens->getProductId(), $key);
             $c = $this->connection($parms, "unblockKey");
             if($c == true || $this->check_rm($c)){
-                return true;
+                return Cryptolens::outputHelper($c);
             } else {
-                Cryptolens::outputHelper([
-                    "error" => "An error occured",
+                return Cryptolens::outputHelper([
+                    "error" => "An error occurred",
                     "response" => $c
                 ]);
             }
