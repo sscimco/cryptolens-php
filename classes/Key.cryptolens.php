@@ -69,7 +69,7 @@ namespace Cryptolens_PHP_Client {
 
                 if($license["ProductId"] !== $this->cryptolens->getProductId() || $license["Key"] !== $key){
                     return Cryptolens::outputHelper([
-                        "error" => "An error occured while activating key - Malformed response recieved.",
+                        "error" => "An error occurred while activating key - Malformed response received.",
                         "response" => $c
                     ]);
                 }
@@ -78,20 +78,20 @@ namespace Cryptolens_PHP_Client {
                 foreach($license["ActivatedMachines"] as $machine){
                     if(!array_key_exists("Mid", $machine)){
                         return Cryptolens::outputHelper([
-                            "error" => "An error occured while activating key - The license has already been enabled on this machine.",
+                            "error" => "An error occurred while activating key - The license has already been enabled on this machine.",
                             "response" => $c
                         ]);
                     }
                     if($machine["Mid"] !== $machineid){
                         return Cryptolens::outputHelper([
-                            "error" => "An error occured while activating key - The key can not be activated on this machine as the recieved machine ID is not the same as sent.",
+                            "error" => "An error occurred while activating key - The key can not be activated on this machine as the received machine ID is not the same as sent.",
                             "response" => $c
                         ]);
                     }
                 }
                 if($license["Expires"] < time()){
                     return Cryptolens::outputHelper([
-                        "error" => "An error occured while activating key - The key has already expired.",
+                        "error" => "An error occurred while activating key - The key has already expired.",
                         "response" => $c
                     ]);
                 }
@@ -140,7 +140,7 @@ namespace Cryptolens_PHP_Client {
                 switch($c){
                     case $c["result"] != 0:
                         return Cryptolens::outputHelper([
-                            "error" => "An error occured.",
+                            "error" => "An error occurred.",
                             "response" => $c
                         ]);
                     case $c["key"] == null && $c["keys"] == null:
@@ -167,7 +167,7 @@ namespace Cryptolens_PHP_Client {
                 switch($c){
                     case $c["result"] != 0:
                         return Cryptolens::outputHelper([
-                            "error" => "An error occured.",
+                            "error" => "An error occurred.",
                             "response" => $c
                         ]);
                     case $c["result"] == 0 && $c["key"] == null:
@@ -194,7 +194,7 @@ namespace Cryptolens_PHP_Client {
             if($c == true){
                 if($c["result"] != 0){
                     return Cryptolens::outputHelper([
-                        "error" => "An error occured.",
+                        "error" => "An error occurred.",
                         "response" => $c
                     ]);
                 } else {
@@ -219,7 +219,7 @@ namespace Cryptolens_PHP_Client {
                 switch($c){
                     case $c["result"] != 0:
                         return Cryptolens::outputHelper([
-                            "error" => "An error occured.",
+                            "error" => "An error occurred.",
                             "response" => $c
                         ]);
                     case $c["licenseKey"] == null:
@@ -268,7 +268,7 @@ namespace Cryptolens_PHP_Client {
                     return true;
                 } else {
                     return Cryptolens::outputHelper([
-                        "error" => "An error occured.",
+                        "error" => "An error occurred.",
                         "response" => $c
                     ]);
                 }
@@ -294,7 +294,7 @@ namespace Cryptolens_PHP_Client {
                     return Cryptolens::outputHelper($c);
                 } else {
                     return Cryptolens::outputHelper([
-                        "error" => "An error occured.",
+                        "error" => "An error occurred.",
                         "response" => $c
                     ]);
                 }
@@ -310,7 +310,7 @@ namespace Cryptolens_PHP_Client {
                 return Cryptolens::outputHelper($c);
             } else {
                 Cryptolens::outputHelper([
-                    "error" => "An error occured",
+                    "error" => "An error occurred",
                     "response" => $c
                 ]);
             }
@@ -336,7 +336,7 @@ namespace Cryptolens_PHP_Client {
                 return Cryptolens::outputHelper($c);
             } else {
                 Cryptolens::outputHelper([
-                    "error" => "An error occured",
+                    "error" => "An error occurred",
                     "response" => $c
                 ]);
             }
@@ -412,7 +412,7 @@ namespace Cryptolens_PHP_Client {
             if($this->check_response($resp, $endpoint) == true){
                 return $resp;
             } else {
-                return "Could not validate reponse";
+                return "Could not validate response";
             }
         }
 
