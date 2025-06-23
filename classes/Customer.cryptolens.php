@@ -138,14 +138,18 @@ namespace Cryptolens_PHP_Client {
          * `get_customers()` - Allows you to retrieve all customers 
          *
          * @param string $search If either "Name", "Company", "Email" or "Secret" contains the search string, the result will be returned.
+         * @param string|null $CustomerId If this is set, you can use the CustomerId field to find a specific customer based on their integer Id.
          * @param int $modelversion Specify if you want a simplified version (1) of the customer objects or more advanced (2). - (default: 1)
          * @param int $limit Specifiy the number of customers to be returned.
          * @return array|false Either the customer objects or false
          */
-        public function get_customers(string $search = null, int $modelversion = 1, int $limit = null){
+        public function get_customers(string $search = null, string $CustomerId = null, int $modelversion = 1, int $limit = null){
             $additional_flags = array();
             if(isset($search)){
                 $additional_flags["Search"] = $search;
+            }
+            if(isset($CustomerId)){
+                $additional_flags["CustomerId"] = $CustomerId;
             }
             if(isset($limit)){
                 $additional_flags["Limit"] = $limit;
