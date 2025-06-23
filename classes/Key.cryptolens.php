@@ -423,19 +423,30 @@ namespace Cryptolens_PHP_Client {
         private function check_response($res, $endpoint){
             if(is_null($res)){
                 return "Res == null";
-            } else {
-                if(in_array($endpoint, Endpoints::$no_response_check)){
-                    return true;
-                }
-                foreach($res as $r){
-                    foreach(Results::get_results()["Key"][$endpoint] as $e){
-                        if(!strcasecmp($r, $e) == 0){
-                            return "Not found variable";
-                        }
-                    }
-                }
+            }
+
+            if(in_array($endpoint, Endpoints::$no_response_check)){
                 return true;
             }
+
+            $actual_keys = array_keys($res); // e.g., ["metadata", "licenseKey", "signature", ...]
+            $expected_keys = Results::get_results()["Key"][$endpoint]; // e.g., ["LicenseKey", "Signature", ...]
+
+            foreach($expected_keys as $expected_key){
+                $found = false;
+                foreach($actual_keys as $actual_key){
+                    if(strcasecmp($expected_key, $actual_key) === 0){
+                        $found = true;
+                        break;
+                    }
+                }
+
+                if(!$found){
+                    return "Missing expected key: $expected_key";
+                }
+            }
+
+            return true;
         }
 
         private function check_rm($data){
